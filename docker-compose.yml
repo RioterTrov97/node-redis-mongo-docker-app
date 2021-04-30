@@ -1,0 +1,19 @@
+version: '3'
+services:
+    redis-app:
+        build: .
+        environment:
+            - PORT=3000
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=suman
+            - MONGO_INITDB_ROOT_PASSWORD=mypassword
+        volumes:
+            - mongo-db:/data/db
+    redis:
+        image: redis
+volumes:
+    mongo-db:
